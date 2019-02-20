@@ -18,5 +18,4 @@ class Liquidez(models.Model):
     total_pasivo_corriente = fields.Float('Total Pasivo Corriente', required=True, digits=(20, 3))
     cobranzas = fields.Float('Cobranzas', required=True, digits=(20, 3))
     pago_efectivo = fields.Float('Pagos en Efectivo', required=True, digits=(20, 3))
-    fecha_balance = fields.Date('Fecha de Validacion para el Balance', store=True,
-        readonly=False, )
+    fecha_balance = fields.Date('Fecha de Validacion para el Balance', store=True, readonly=False)

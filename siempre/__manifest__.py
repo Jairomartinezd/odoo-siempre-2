@@ -32,6 +32,7 @@
         'views/main.xml',
         'views/templates.xml',
         'views/liquidez.xml',
+        'views/eficiencia.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
