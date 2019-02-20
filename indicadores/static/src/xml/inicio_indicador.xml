@@ -3,14 +3,17 @@
 
 
     <template id="inicio_indicador" name="Indicadores Financieros SIEMPRE"  >
-    	 <div class="container">
-    	 	<nav class="row">
-				<div class="col-md-12 text-center well well-sm">
-					<a href="#"><button class="btn btn-primary btn-sm">Liquidez</button></a>
-					<a href="#"><button class="btn btn-primary btn-sm">Eficiencia</button></a>
-				</div>
-			</nav>
-    	 </div>
+    	<t t-call="website.layout">
+
+	    	 <div class="container">
+	    	 	<nav class="row">
+					<div class="col-md-12 text-center well well-sm">
+						<a href="#"><button class="btn btn-primary btn-sm">Liquidez</button></a>
+						<a href="#"><button class="btn btn-primary btn-sm">Eficiencia</button></a>
+					</div>
+				</nav>
+	    	 </div>
+    	</t>
     </template>
 
 </odoo>
