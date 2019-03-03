@@ -26,6 +26,7 @@ class MainController(http.Controller):
 	def inicio_liquidez_RC(self):
 
 		modelo_liquidez = http.request.env['liquidez'].sudo().search([])
+		self._logger.info(':::: modelo_liquidez  ::::  %s ' %modelo_liquidez)
 
 
 		diccionario_res = {

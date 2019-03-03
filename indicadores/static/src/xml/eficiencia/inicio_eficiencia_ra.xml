@@ -34,36 +34,55 @@
 					<br/><br/><br/>
 				</nav>
 				<nav class="row">
-					<!-- <div class="card" > -->
-						<div class="col-md-6 text-center well well-sm">
-							<table class="table table-dark">
-							  <thead>
-							    <tr>
-							      <th scope="col">#</th>
-							      <th scope="col">Rotacion de Activo</th>
-							      <th scope="col">Mes y Año</th>
-							    </tr>
-							  </thead>
-							  <tbody>
+					<div class="col-md-6 text-center well well-sm">
+						<table class="table table-dark" id="tabla_res">
+						  <thead>
+						    <tr>
+						      <th scope="col">#</th>
+						      <th scope="col">Rotacion de Activo</th>
+						      <th scope="col">Mes y Año</th>
+						    </tr>
+						  </thead>
+						  <tbody>
 
-	                            <tr t-foreach="modelo_eficiencia" t-as="eficiencia" t-att-value="eficiencia" >
-							      <th scope="row"><t t-esc="eficiencia.id"> </t></th>
-	                                <td > <t t-esc="eficiencia.vent_net/eficiencia.act_tot"> </t> </td>
-	                                <td > <t t-esc="eficiencia.fecha_balance"> </t> </td>
-	                            </tr>
+                            <tr t-foreach="modelo_eficiencia" t-as="eficiencia" t-att-value="eficiencia" t-att-class="'columna'">
+						      <th scope="row"><t t-esc="eficiencia.id"> </t></th>
+                                <td > <t t-esc="eficiencia.vent_net/eficiencia.act_tot"> </t> </td>
+                                <td > <t t-esc="eficiencia.fecha_balance"> </t> </td>
+                            </tr>
 
-							  </tbody>
-							</table>
-						</div>
-                    <!-- </div> -->
-					<!-- aqui va el contenedor que grafica -->
-					<!-- <div id="container" style="width:100%; height:400px;"></div> -->
+						  </tbody>
+						</table>
+					</div>
 
 					<!-- este es el script ESTATICO que carga informacion en ese chart -->
 					<div class="col-md-6 text-center well well-sm">
 						<div id="container" style="width:100%; height:400px;"></div> <!-- aqui va el contenedor que grafica -->
 						<script type="text/javascript">
 								document.addEventListener('DOMContentLoaded', function () {
+								var lista_valores_y = []
+								var lista_valores_x = []
+								var table = document.getElementById("tabla_res");
+								for (var i = 1, row; row = table.rows[i]; i++) {
+								   //iterate through rows
+								   //rows would be accessed using the "row" variable assigned in the for loop
+								   for (var j = 0, col; col = row.cells[j]; j++) {
+								     //iterate through columns
+								     //columns would be accessed using the "col" variable assigned in the for loop
+								     console.log(col.textContent);
+
+								     if( j == 1){
+								     	lista_valores_y.push(parseFloat(col.textContent))
+								     }
+
+								     if( j == 2){
+								     	lista_valores_x.push(col.textContent)
+								     }
+
+								   }  
+								}
+								console.log(lista_valores_y);
+							 	console.log(lista_valores_x);
 							    var myChart = Highcharts.chart('container', {
 							        chart: {
 							            type: 'column'
@@ -71,23 +90,27 @@
 							        title: {
 							            text: 'Rotacion de Activo'
 							        },
+							        subtitle: {
+								        text: 'Ventas Netas / Activo Total'
+								    },
 							        xAxis: {
-							            categories: ['Apples', 'Bananas', 'Oranges']
+							            categories: lista_valores_x,
 							        },
 							        yAxis: {
 							            title: {
-							                text: 'Ventas Netas / Activo Total'
+							                text: 'Resultados'
 							            }
 							        },
+							        plotOptions: {
+								        series: {
+								            label: {
+								                connectorAllowed: false
+								            },
+								        }
+								    },
 							        series: [{
-							            name: 'Jane',
-							            data: [1, 0, 4]
-							        }, {
-							            name: 'John',
-							            data: [5, 7, 3]
-							        }, {
-							            name: 'RC por Mes',
-							            data: [1,8,3]
+							            name: 'Rotacion de Activo por Mes',
+							            data: lista_valores_y,
 							        }]
 							    });
 							});
@@ -95,36 +118,6 @@
 					</div>
 
 				</nav>
-				<!-- <div>
-					<H1>
-						AQUI VAN TUS DATOS que vienen desde el controller...!!
-					</H1>
-                    <div class="card" >
-							<div class="col-md-6 text-center well well-sm">
-								<table class="table table-dark">
-								  <thead>
-								    <tr>
-								      <th scope="col">#</th>
-								      <th scope="col">activo_corriente</th>
-								      <th scope="col">pasivo_corriente</th>
-								      <th scope="col">inventario</th>
-								    </tr>
-								  </thead>
-								  <tbody>
-	
-		                            <tr  
-		                                t-foreach="modelo_liquidez" t-as="liquidez" t-att-value="liquidez" >
-								      <th scope="row"><t t-esc="liquidez.id"> </t></th>
-		                                <td > <t t-esc="liquidez.activo_corriente"> </t> </td>
-		                                <td > <t t-esc="liquidez.pasivo_corriente"> </t> </td>
-		                                <td > <t t-esc="liquidez.inventario"> </t> </td>
-		                            </tr>
-
-								  </tbody>
-								</table>
-							</div>
-                    </div>
-				</div> -->
 	    	</div>
     	</t>
     </template>

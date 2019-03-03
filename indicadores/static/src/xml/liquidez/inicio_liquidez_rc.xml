@@ -33,6 +33,17 @@
 					<br/><br/><br/>
 				</nav>
 				<nav class="row">
+		        	<div class="col-md-2 offset-md-4 text-center well well-sm">
+		        		<select class="form-control" name="anio" id="anio">
+		            		<option value="-1">Todos los Años</option>
+						</select>
+		        	</div>
+		        	<div class="col-md-2 text-center well well-sm">
+		        		<button type="submit" class="btn btn-warning">Consultar</button>
+		        	</div>
+		        	<br/><br/><br/>
+	        	</nav>
+				<nav class="row">
 					<div class="col-md-6 text-center well well-sm">
 						<table class="table table-dark" id="tabla_res">
 						  <thead>
@@ -47,7 +58,9 @@
                             <tr t-foreach="modelo_liquidez" t-as="liquidez" t-att-value="liquidez" t-att-class="'columna'">
 						      <th scope="row"><t t-esc="liquidez.id"> </t></th>
                                 <td > <t t-esc="liquidez.activo_corriente/liquidez.pasivo_corriente"> </t> </td>
-                               <td > <t t-esc="liquidez.fecha_balance"> </t> </td>
+                                <td> <t t-esc="liquidez.fecha_balance"> </t> </td>
+                               <!-- <td t-foreach="modelo_liquidez_fecha" t-as="liquidez_fecha" t-att-value="liquidez_fecha"> <span  t-esc="time.strftime('%A, %d %B %Y',time.strptime(liquidez_fecha.date_order,'%Y-%m-%d'))"> </span> </td> -->
+                               <!-- <td t-foreach="modelo_liquidez" t-as="liquidez"> <span t-esc="time.strftime('%A, %d %B %Y',time.strptime(liquidez.date_invoice,'%Y-%m-%d'))"> </span> </td> -->
                             </tr>
 
 						  </tbody>
