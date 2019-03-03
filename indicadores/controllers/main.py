@@ -23,14 +23,24 @@ class MainController(http.Controller):
 		return http.request.render('indicadores.inicio_liquidez')
 
 	@http.route(['/indicadores/liquidez/razonCorriente'], auth='public', website=True)
-	def inicio_liquidez_RC(self):
+	def inicio_liquidez_RC(self,**args):
+		##la variable fecha_anio, viene por request GET entonces podremos capturarla.!
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_liquidez = http.request.env['liquidez'].sudo().search(condicion)
+		else:
+			modelo_liquidez = http.request.env['liquidez'].sudo().search([])
 
-		modelo_liquidez = http.request.env['liquidez'].sudo().search([])
 		self._logger.info(':::: modelo_liquidez  ::::  %s ' %modelo_liquidez)
 
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_liquidez': modelo_liquidez,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_liquidez_rc', diccionario_res)

@@ -5,14 +5,18 @@
     <template id="inicio_liquidez_rc" name="Indicadores Financieros de Liquidez SIEMPRE" >
 
     	<t t-call="website.layout">
+		    	
+
+		<!--  ESTO SE LLAMA reutilizar una plantilla, esto lo que hace es llamar a una rutina de elementos que ya fueron creados -->
+		<!-- verifica el archivo inicio_indicadores y te daras cuenta de como se usa-->
+        <div class="container fluid">
+    		<t t-call="indicadores.imagen_principal">
+            </t>
+        </div>
+
+
 	    	<div class="container">
 	    	 	<br/>
-	    	 	<header class="row">
-	    	 		<div class="col-md-12 text-center well well-sm">
-						<a href="/indicadores/liquidez"><button class="btn btn-info btn-lg">Liquidez</button></a>
-						<a href="/indicadores/eficiencia"><button class="btn btn-outline-info btn-lg">Eficiencia</button></a>
-					</div>
-				</header>
 				<br/><br/>
 	    	 	<nav class="row">
 					<div class="col-md-12 text-center well well-sm">
@@ -32,17 +36,32 @@
 					</div>
 					<br/><br/><br/>
 				</nav>
+
+				<!-- Formulario para realizar las consutas por años-->  
 				<nav class="row">
-		        	<div class="col-md-2 offset-md-4 text-center well well-sm">
-		        		<select class="form-control" name="anio" id="anio">
-		            		<option value="-1">Todos los Años</option>
-						</select>
-		        	</div>
-		        	<div class="col-md-2 text-center well well-sm">
-		        		<button type="submit" class="btn btn-warning">Consultar</button>
-		        	</div>
-		        	<br/><br/><br/>
+					<form class="col 12" action="/indicadores/liquidez/razonCorriente" id="formConsultarFecha">
+			        	<div class="col 12" style="display: inline-flex">
+			        		<select class="form-control" name="anio" id="anio">
+			            		<option value="todos">Todos los Registros</option>
+			            		<option value="2019">Registros solo del: 2019</option>
+			            		<option value="2018">Registros solo del: 2018</option>
+			            		<option value="2017">Registros solo del: 2017</option>
+							</select>
+
+			        		<select class="form-control" name="usuario" id="usuario">
+			            		<option value="todos">Todos los Usuario</option>
+	                            <option t-foreach="usuarios" t-as="usuario" t-att-value="usuario.id" >
+	                            	Registros del usuario: <t t-esc="usuario.name"> </t>
+	                            </option>
+							</select>
+			        		<button type="submit" class="btn btn-warning">Consultar</button>
+			        	</div>
+
+			        </form>
+
 	        	</nav>
+
+
 				<nav class="row">
 					<div class="col-md-6 text-center well well-sm">
 						<table class="table table-dark" id="tabla_res">
