@@ -1,0 +1,1 @@
+ document.getElementById("liquidez").innerHTML = serialize(document.forms[ac]);

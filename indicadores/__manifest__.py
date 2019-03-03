@@ -28,6 +28,23 @@
         'views/templates.xml',
 
         'static/src/xml/inicio_indicador.xml',
+
+        'static/src/xml/liquidez/inicio_liquidez.xml',
+        'static/src/xml/liquidez/inicio_liquidez_rc.xml',
+        'static/src/xml/liquidez/inicio_liquidez_pa.xml',
+        'static/src/xml/liquidez/inicio_liquidez_psa.xml',
+        'static/src/xml/liquidez/inicio_liquidez_cnt.xml',
+        'static/src/xml/liquidez/inicio_liquidez_di.xml',
+        'static/src/xml/liquidez/inicio_liquidez_cp.xml',
+        
+        'static/src/xml/eficiencia/inicio_eficiencia.xml',
+        'static/src/xml/eficiencia/inicio_eficiencia_ef.xml',
+        'static/src/xml/eficiencia/inicio_eficiencia_ri.xml',
+        'static/src/xml/eficiencia/inicio_eficiencia_ie.xml',
+        'static/src/xml/eficiencia/inicio_eficiencia_rc.xml',
+        'static/src/xml/eficiencia/inicio_eficiencia_pc.xml',
+        'static/src/xml/eficiencia/inicio_eficiencia_ra.xml',
+        'static/src/xml/eficiencia/inicio_eficiencia_rp.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

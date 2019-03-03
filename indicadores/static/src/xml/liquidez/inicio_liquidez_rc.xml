@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <template id="inicio_liquidez_rc" name="Indicadores Financieros de Liquidez SIEMPRE" >
+
+    	<t t-call="website.layout">
+	    	<div class="container">
+	    	 	<br/>
+	    	 	<header class="row">
+	    	 		<div class="col-md-12 text-center well well-sm">
+						<a href="/indicadores/liquidez"><button class="btn btn-info btn-lg">Liquidez</button></a>
+						<a href="/indicadores/eficiencia"><button class="btn btn-outline-info btn-lg">Eficiencia</button></a>
+					</div>
+				</header>
+				<br/><br/>
+	    	 	<nav class="row">
+					<div class="col-md-12 text-center well well-sm">
+						<a href="#"><button class="btn btn-success btn-lg">Razon Corriente</button></a>
+						<a href="/indicadores/liquidez/pruebaAcida"><button class="btn btn-outline-success btn-lg">Prueba Acida</button></a>
+						<a href="/indicadores/liquidez/pruebaSuperAcida"><button class="btn btn-outline-success btn-lg">Prueba Super Acida</button></a>
+						<a href="/indicadores/liquidez/capitalTrabajo"><button class="btn btn-outline-success btn-lg">Capital Neto de Trabajo</button></a>
+						<a href="/indicadores/liquidez/dispInmediata"><button class="btn btn-outline-success btn-lg">Disponibilidad Inmediata</button></a>
+						<a href="/indicadores/liquidez/coberturaPago"><button class="btn btn-outline-success btn-lg">Cobertura de Pagos</button></a>
+					</div>
+				</nav>
+				<br/><br/>
+	    	 	<nav class="row">
+	    	 		<div class="col-md-12 text-center well well-sm">
+						<h1 align="center">Razon Corriente</h1>
+						<p align="justify" style="font-size:18px;">Indica la capacidad que tiene la empresa para cumplir con sus obligaciones financieras, deudas o pasivos a corto plazo. Al Dividir el Activo Corriente entre el Pasivo Corriente, sabremos cuantos activos corrientes tendremos para cubrir o respaldar esos pasivos exigibles a corto plazo.</p>
+					</div>
+					<br/><br/><br/>
+				</nav>
+				<nav class="row">
+		        	<div class="col-md-2 offset-md-4 text-center well well-sm">
+		        		<select class="form-control" name="anio" id="anio">
+		            		<option value="-1">Todos los Años</option>
+						</select>
+		        	</div>
+		        	<div class="col-md-2 text-center well well-sm">
+		        		<button type="submit" class="btn btn-warning">Consultar</button>
+		        	</div>
+		        	<br/><br/><br/>
+	        	</nav>
+				<nav class="row">
+					<div class="col-md-6 text-center well well-sm">
+						<table class="table table-dark" id="tabla_res">
+						  <thead>
+						    <tr>
+						      <th scope="col">#</th>
+						      <th scope="col">Razon Corriente</th>
+						      <th scope="col">Mes y Año</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+
+                            <tr t-foreach="modelo_liquidez" t-as="liquidez" t-att-value="liquidez" t-att-class="'columna'">
+						      <th scope="row"><t t-esc="liquidez.id"> </t></th>
+                                <td > <t t-esc="liquidez.activo_corriente/liquidez.pasivo_corriente"> </t> </td>
+                                <td> <t t-esc="liquidez.fecha_balance"> </t> </td>
+                               <!-- <td t-foreach="modelo_liquidez_fecha" t-as="liquidez_fecha" t-att-value="liquidez_fecha"> <span  t-esc="time.strftime('%A, %d %B %Y',time.strptime(liquidez_fecha.date_order,'%Y-%m-%d'))"> </span> </td> -->
+                               <!-- <td t-foreach="modelo_liquidez" t-as="liquidez"> <span t-esc="time.strftime('%A, %d %B %Y',time.strptime(liquidez.date_invoice,'%Y-%m-%d'))"> </span> </td> -->
+                            </tr>
+
+						  </tbody>
+						</table>
+					</div>
+					<div class="col-md-6 text-center well well-sm">
+						<div id="container" style="width:100%; height:400px;"></div> <!-- aqui va el contenedor que grafica -->
+						<script type="text/javascript">
+								document.addEventListener('DOMContentLoaded', function () {
+								var lista_valores_y = []
+								var lista_valores_x = []
+								var table = document.getElementById("tabla_res");
+								for (var i = 1, row; row = table.rows[i]; i++) {
+								   //iterate through rows
+								   //rows would be accessed using the "row" variable assigned in the for loop
+								   for (var j = 0, col; col = row.cells[j]; j++) {
+								     //iterate through columns
+								     //columns would be accessed using the "col" variable assigned in the for loop
+								     console.log(col.textContent);
+
+								     if( j == 1){
+								     	lista_valores_y.push(parseFloat(col.textContent))
+								     }
+
+								     if( j == 2){
+								     	lista_valores_x.push(col.textContent)
+								     }
+
+								   }  
+								}
+								console.log(lista_valores_y);
+							 	console.log(lista_valores_x);
+							    var myChart = Highcharts.chart('container', {
+							        chart: {
+							            type: 'column'
+							        },
+							        title: {
+							            text: 'Razon Corriente'
+							        },
+							        subtitle: {
+								        text: 'Activo Corriente / Pasivo Corriente'
+								    },
+							        xAxis: {
+							            categories: lista_valores_x,
+							        },
+							        yAxis: {
+							            title: {
+							                text: 'Resultado'
+							            }
+							        },
+							        plotOptions: {
+								        series: {
+								            label: {
+								                connectorAllowed: false
+								            },
+								        }
+								    },
+							        series: [{
+							            name: 'Razon Corriente por Mes',
+							            data: lista_valores_y,
+							        }]
+							    });
+							});
+						</script>
+					</div>
+
+				</nav>
+	    	</div>
+    	</t>
+    </template>
+
+    <!-- Import de los Js y CSS -->
+    <template id="assets_indicadores"  name="importe" inherit_id="website.assets_frontend">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" href="/indicadores/static/src/highcharts/css/highcharts.css"/>
+        </xpath>
+
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/indicadores/static/src/highcharts/highcharts.js"/>
+            <script type="text/javascript" src="/indicadores/static/src/highcharts/modules/exporting.js"/>
+            <script type="text/javascript" src="/indicadores/static/src/highcharts/modules/export-data.js"/>
+        </xpath>
+    </template>
+
+
+
+</odoo>

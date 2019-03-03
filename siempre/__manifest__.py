@@ -33,6 +33,7 @@
         'views/templates.xml',
         'views/liquidez.xml',
         'views/eficiencia.xml',
+        'views/indicador.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
