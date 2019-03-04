@@ -58,6 +58,9 @@
                             <group>
                                 <field name="prov_prom" string="Proveedores Promedio"/>
                             </group>
+                            <!-- <group>
+                                <field name="user_id" readonly="1" groups="siempre.group_administrador"/>
+                            </group> -->
                         </group>
                     </group>
                 </sheet>

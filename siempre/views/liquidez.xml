@@ -59,6 +59,9 @@
                             <group>
                                 <field name="pago_efectivo" string="Pagos en Efectivo"/>
                             </group>
+                            <!-- <group>
+                                <field name="user_id" readonly="1" groups="siempre.group_administrador"/>
+                            </group> -->
                         </group>
 
                     </group>

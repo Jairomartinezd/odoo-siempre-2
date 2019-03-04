@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="liquidez_rule" model="ir.rule">
+            <field name="name">Reglas de Liquidez</field>
+            <field name="model_id" ref="siempre.model_liquidez"/>
+            <field name="groups" eval="[(4, ref('siempre.liquidez_administrador'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[('liquidez_id.user_id','=',user.id)]</field>
+        </record>
+
+        <record id="eficiencia_rule" model="ir.rule">
+            <field name="name">Reglas de Eficiencia</field>
+            <field name="model_id" ref="siempre.model_eficiencia"/>
+            <field name="groups" eval="[(4, ref('siempre.eficiencia_administrador'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">[('eficiencia_id.user_id','=',user.id)]</field>
+        </record>
+    </data>
+</odoo>
