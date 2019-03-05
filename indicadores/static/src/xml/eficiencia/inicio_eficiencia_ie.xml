@@ -33,6 +33,23 @@
 					</div>
 					<br/><br/><br/>
 				</nav>
+
+				<!-- Formulario para realizar las consutas por años-->  
+				<nav class="row">
+					<form class="col 12" action="/indicadores/eficiencia/invExist" id="formConsultarFecha">
+			        	<div class="col-md-4 offset-md-4 text-center well well-sm" style="display: inline-flex">
+			        		<select class="form-control" name="anio" id="anio">
+			            		<option value="todos">Todos los Registros</option>
+			            		<option value="2019">Registros solo del: 2019</option>
+			            		<option value="2018">Registros solo del: 2018</option>
+			            		<option value="2017">Registros solo del: 2017</option>
+							</select>
+			        		<button type="submit" class="btn btn-warning">Consultar</button>
+			        	</div>
+			        </form>
+			        <br/><br/><br/>
+	        	</nav>
+
 				<nav class="row">
 					<div class="col-md-6 text-center well well-sm">
 						<table class="table table-dark" id="tabla_res">

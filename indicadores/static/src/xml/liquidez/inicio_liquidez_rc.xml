@@ -10,7 +10,7 @@
 		<!--  ESTO SE LLAMA reutilizar una plantilla, esto lo que hace es llamar a una rutina de elementos que ya fueron creados -->
 		<!-- verifica el archivo inicio_indicadores y te daras cuenta de como se usa-->
         <div class="container fluid">
-    		<t t-call="indicadores.imagen_principal">
+    		<t t-call="indicadores.menu_indicador_liquidez">
             </t>
         </div>
 
@@ -40,27 +40,18 @@
 				<!-- Formulario para realizar las consutas por años-->  
 				<nav class="row">
 					<form class="col 12" action="/indicadores/liquidez/razonCorriente" id="formConsultarFecha">
-			        	<div class="col 12" style="display: inline-flex">
+			        	<div class="col-md-4 offset-md-4 text-center well well-sm" style="display: inline-flex">
 			        		<select class="form-control" name="anio" id="anio">
 			            		<option value="todos">Todos los Registros</option>
 			            		<option value="2019">Registros solo del: 2019</option>
 			            		<option value="2018">Registros solo del: 2018</option>
 			            		<option value="2017">Registros solo del: 2017</option>
 							</select>
-
-			        		<select class="form-control" name="usuario" id="usuario">
-			            		<option value="todos">Todos los Usuario</option>
-	                            <option t-foreach="usuarios" t-as="usuario" t-att-value="usuario.id" >
-	                            	Registros del usuario: <t t-esc="usuario.name"> </t>
-	                            </option>
-							</select>
 			        		<button type="submit" class="btn btn-warning">Consultar</button>
 			        	</div>
-
 			        </form>
-
+			        <br/><br/><br/>
 	        	</nav>
-
 
 				<nav class="row">
 					<div class="col-md-6 text-center well well-sm">

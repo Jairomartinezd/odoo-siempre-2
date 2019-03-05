@@ -41,6 +41,31 @@
 	    	 </div>
     </template>
 
+    <template id="menu_indicador_liquidez" name="Indicadores Financieros SIEMPRE"  >
+	    	 <div class="container">
+				<br/>
+	    	 	<nav class="row">
+					<div class="col-md-12 text-center well well-sm">
+						<a href="/indicadores/liquidez"><button class="btn btn-info btn-lg">Liquidez</button></a>
+						<a href="/indicadores/eficiencia"><button class="btn btn-outline-info btn-lg">Eficiencia</button></a>
+					</div>
+				</nav>
+
+	    	 </div>
+    </template>
+
+    <template id="menu_indicador_eficiencia" name="Indicadores Financieros SIEMPRE"  >
+	    	 <div class="container">
+				<br/>
+	    	 	<nav class="row">
+					<div class="col-md-12 text-center well well-sm">
+						<a href="/indicadores/liquidez"><button class="btn btn-outline-info btn-lg">Liquidez</button></a>
+						<a href="/indicadores/eficiencia"><button class="btn btn-info btn-lg">Eficiencia</button></a>
+					</div>
+				</nav>
+
+	    	 </div>
+    </template>
 
 
 </odoo>

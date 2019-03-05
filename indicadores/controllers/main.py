@@ -46,61 +46,116 @@ class MainController(http.Controller):
 		return http.request.render('indicadores.inicio_liquidez_rc', diccionario_res)
 
 	@http.route(['/indicadores/liquidez/pruebaAcida'], auth='public', website=True)
-	def inicio_liquidez_pa(self):
+	def inicio_liquidez_pa(self,**args):
 
-		modelo_liquidez = http.request.env['liquidez'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_liquidez = http.request.env['liquidez'].sudo().search(condicion)
+		else:
+			modelo_liquidez = http.request.env['liquidez'].sudo().search([])
 
+		self._logger.info(':::: modelo_liquidez  ::::  %s ' %modelo_liquidez)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_liquidez': modelo_liquidez,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_liquidez_pa', diccionario_res)
 
 	@http.route(['/indicadores/liquidez/pruebaSuperAcida'], auth='public', website=True)
-	def inicio_liquidez_psa(self):
+	def inicio_liquidez_psa(self,**args):
 
-		modelo_liquidez = http.request.env['liquidez'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_liquidez = http.request.env['liquidez'].sudo().search(condicion)
+		else:
+			modelo_liquidez = http.request.env['liquidez'].sudo().search([])
 
+		self._logger.info(':::: modelo_liquidez  ::::  %s ' %modelo_liquidez)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_liquidez': modelo_liquidez,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_liquidez_psa', diccionario_res)
 
 	@http.route(['/indicadores/liquidez/capitalTrabajo'], auth='public', website=True)
-	def inicio_liquidez_cnt(self):
+	def inicio_liquidez_cnt(self,**args):
 
-		modelo_liquidez = http.request.env['liquidez'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_liquidez = http.request.env['liquidez'].sudo().search(condicion)
+		else:
+			modelo_liquidez = http.request.env['liquidez'].sudo().search([])
 
+		self._logger.info(':::: modelo_liquidez  ::::  %s ' %modelo_liquidez)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_liquidez': modelo_liquidez,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_liquidez_cnt', diccionario_res)
 
 	@http.route(['/indicadores/liquidez/dispInmediata'], auth='public', website=True)
-	def inicio_liquidez_di(self):
+	def inicio_liquidez_di(self,**args):
 
-		modelo_liquidez = http.request.env['liquidez'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_liquidez = http.request.env['liquidez'].sudo().search(condicion)
+		else:
+			modelo_liquidez = http.request.env['liquidez'].sudo().search([])
 
+		self._logger.info(':::: modelo_liquidez  ::::  %s ' %modelo_liquidez)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_liquidez': modelo_liquidez,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_liquidez_di', diccionario_res)
 
 	@http.route(['/indicadores/liquidez/coberturaPago'], auth='public', website=True)
-	def inicio_liquidez_cp(self):
+	def inicio_liquidez_cp(self,**args):
 
-		modelo_liquidez = http.request.env['liquidez'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_liquidez = http.request.env['liquidez'].sudo().search(condicion)
+		else:
+			modelo_liquidez = http.request.env['liquidez'].sudo().search([])
 
+		self._logger.info(':::: modelo_liquidez  ::::  %s ' %modelo_liquidez)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_liquidez': modelo_liquidez,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_liquidez_cp', diccionario_res)
@@ -111,85 +166,162 @@ class MainController(http.Controller):
 		return http.request.render('indicadores.inicio_eficiencia')
 
 	@http.route(['/indicadores/eficiencia/eficiencia'], auth='public', website=True)
-	def inicio_eficiencia_ef(self):
+	def inicio_eficiencia_ef(self,**args):
 
-		modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search(condicion)
+		else:
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
 
+		self._logger.info(':::: modelo_eficiencia  ::::  %s ' %modelo_eficiencia)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_eficiencia': modelo_eficiencia,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_eficiencia_ef', diccionario_res)
 
 	@http.route(['/indicadores/eficiencia/rotInv'], auth='public', website=True)
-	def inicio_eficiencia_ri(self):
+	def inicio_eficiencia_ri(self,**args):
 
-		modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search(condicion)
+		else:
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
 
+		self._logger.info(':::: modelo_eficiencia  ::::  %s ' %modelo_eficiencia)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_eficiencia': modelo_eficiencia,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_eficiencia_ri', diccionario_res)
 
 	@http.route(['/indicadores/eficiencia/invExist'], auth='public', website=True)
-	def inicio_eficiencia_ie(self):
+	def inicio_eficiencia_ie(self,**args):
 
-		modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search(condicion)
+		else:
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
 
+		self._logger.info(':::: modelo_eficiencia  ::::  %s ' %modelo_eficiencia)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_eficiencia': modelo_eficiencia,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_eficiencia_ie', diccionario_res)
 
 	@http.route(['/indicadores/eficiencia/rotCart'], auth='public', website=True)
-	def inicio_eficiencia_rc(self):
+	def inicio_eficiencia_rc(self,**args):
 
-		modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search(condicion)
+		else:
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
 
+		self._logger.info(':::: modelo_eficiencia  ::::  %s ' %modelo_eficiencia)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_eficiencia': modelo_eficiencia,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_eficiencia_rc', diccionario_res)
 
 	@http.route(['/indicadores/eficiencia/perCob'], auth='public', website=True)
-	def inicio_eficiencia_pc(self):
+	def inicio_eficiencia_pc(self,**args):
 
-		modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search(condicion)
+		else:
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
 
+		self._logger.info(':::: modelo_eficiencia  ::::  %s ' %modelo_eficiencia)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_eficiencia': modelo_eficiencia,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_eficiencia_pc', diccionario_res)
 
 	@http.route(['/indicadores/eficiencia/rotAct'], auth='public', website=True)
-	def inicio_eficiencia_ra(self):
+	def inicio_eficiencia_ra(self,**args):
 
-		modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search(condicion)
+		else:
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
 
+		self._logger.info(':::: modelo_eficiencia  ::::  %s ' %modelo_eficiencia)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_eficiencia': modelo_eficiencia,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_eficiencia_ra', diccionario_res)
 
 	@http.route(['/indicadores/eficiencia/rotProv'], auth='public', website=True)
-	def inicio_eficiencia_rp(self):
+	def inicio_eficiencia_rp(self,**args):
 
-		modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
+		self._logger.info("  parametro fecha :: %s"%(args))
+		if 'anio' in args and args['anio'] != 'todos':
+			fecha_anio = str(args['anio'])
+			##Buscaremos por rango
+			condicion = [('fecha_balance','>','01/01/%s'%(fecha_anio)),('fecha_balance','<','31/12/%s'%(fecha_anio))]
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search(condicion)
+		else:
+			modelo_eficiencia = http.request.env['eficiencia'].sudo().search([])
 
+		self._logger.info(':::: modelo_eficiencia  ::::  %s ' %modelo_eficiencia)
+
+		usuarios = http.request.env['res.users'].sudo().search([])
 
 		diccionario_res = {
 			'modelo_eficiencia': modelo_eficiencia,
+			'usuarios':usuarios
 		}
 
 		return http.request.render('indicadores.inicio_eficiencia_rp', diccionario_res)
