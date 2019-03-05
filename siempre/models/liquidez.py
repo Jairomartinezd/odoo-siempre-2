@@ -19,3 +19,4 @@ class Liquidez(models.Model):
     cobranzas = fields.Float('Cobranzas', required=True, digits=(20, 3))
     pago_efectivo = fields.Float('Pagos en Efectivo', required=True, digits=(20, 3))
     fecha_balance = fields.Date('Fecha de Validacion para el Balance', store=True, readonly=False)
+    #user_id = fields.Many2one('res.users', 'Usuario')

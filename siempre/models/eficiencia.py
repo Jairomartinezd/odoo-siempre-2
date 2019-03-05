@@ -19,5 +19,5 @@ class Eficiencia(models.Model):
     act_tot = fields.Float('Activo Total', required=True, digits=(20, 3))
     compr_per = fields.Float('Compras del Periodo', required=True, digits=(20, 3))
     prov_prom = fields.Float('Proveedores Promedio', required=True, digits=(20, 3))
-    fecha_balance = fields.Date('Fecha de Validacion para el Balance', store=True,
-        readonly=False, )
+    fecha_balance = fields.Date('Fecha de Validacion para el Balance', store=True, readonly=False, )
+    #user_id = fields.Many2one('res.users', 'Usuario')

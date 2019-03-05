@@ -28,7 +28,7 @@
         # 'views/templates.xml',
         'security/groups.xml',
         'security/ir.model.access.csv',
-        'security/siempre_security.xml',
+        #'security/siempre_security.xml',
         
         'views/main.xml',
         'views/templates.xml',
